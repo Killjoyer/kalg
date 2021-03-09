@@ -3,8 +3,8 @@ import java.io.File
 typealias Matrix<T> = List<List<T>>
 
 fun main() {
-    val input = File("in.txt").readLines().iterator()
-    val output = File("out.txt").printWriter()
+    val input = File("task2/in.txt").readLines().iterator()
+    val output = File("task2/out.txt").printWriter()
     val n = input.next().toInt()
     val matrix: Matrix<Int> = (0 until n).map { input.next().split(' ').map { it.toInt() } }
     val used = (0 until n).map { false }.toMutableList()

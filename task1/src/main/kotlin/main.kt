@@ -3,8 +3,8 @@ import java.io.File
 internal typealias Labyrinth = MutableList<List<Int>>
 
 fun main(args: Array<String>) {
-    val inputFile = File("in.txt").readLines().iterator()
-    val outputFile = File("out.txt").printWriter()
+    val inputFile = File("task1/in.txt").readLines().iterator()
+    val outputFile = File("task1/out.txt").printWriter()
     val lines = inputFile.next().toInt()
     val rows = inputFile.next().toInt()
     val labyrinth: Labyrinth = mutableListOf()

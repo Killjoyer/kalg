@@ -40,7 +40,7 @@ fun Labyrinth<Int>.bfs(startPosition: List<Int>, endPosition: List<Int>, visited
             break
         }
         this.getNeighbours(curX, curY)
-            .forEach { if (visited[it[0]][it[1]])
+            .forEach { if (!visited[it[0]][it[1]])
                 queue.addLast(currentPath.addNextStep(it)) }
     }
     return result

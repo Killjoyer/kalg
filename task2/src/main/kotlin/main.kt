@@ -23,9 +23,9 @@ fun main() {
     }
 }
 
-fun Matrix<Int>.dfs(vert: Int, used: MutableList<Boolean>, componentStorage: HashSet<Int>): Unit {
+fun Matrix<Int>.dfs(vert: Int, used: MutableList<Boolean>, componentStorage: HashSet<Int>) {
     this.indices.also { used[vert] = true }.forEach { i ->
-        i.takeIf { this[vert][i] == 1 && !used[i] }?.also { componentStorage.add(it) }
+        i.takeIf { this[vert][i] == 1 && !used[i] }?.also { componentStorage.add(i) }
             ?.also { dfs(i, used, componentStorage) }
     }
 }

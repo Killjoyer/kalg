@@ -1,12 +1,10 @@
 import java.io.File
-import kotlin.collections.ArrayDeque
-import kotlin.math.abs
 
 internal typealias Labyrinth = MutableList<List<Int>>
 
 fun main(args: Array<String>) {
-    val inputFile = File("input.txt").readLines().iterator()
-    val outputFile = File("output.txt").printWriter()
+    val inputFile = File("in.txt").readLines().iterator()
+    val outputFile = File("out.txt").printWriter()
     val lines = inputFile.next().toInt()
     val rows = inputFile.next().toInt()
     val labyrinth: Labyrinth = mutableListOf()

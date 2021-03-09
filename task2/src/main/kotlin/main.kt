@@ -11,7 +11,11 @@ fun main() {
     var componentsAmount = 0
     val components = mutableListOf<HashSet<Int>>()
     (0 until n).forEach { v ->
-        v.takeIf { !used[v] }?.also { componentsAmount++ }?.also { components.add(matrix.dfs(v, used, hashSetOf(v))) }
+        v.takeIf { !used[v] }?.also { componentsAmount++ }?.also {
+            val newComponent = hashSetOf(v)
+            matrix.dfs(v, used, newComponent)
+            components.add(newComponent)
+        }
     }
     output.use { out ->
         out.println(componentsAmount)
@@ -19,9 +23,9 @@ fun main() {
     }
 }
 
-fun Matrix<Int>.dfs(vert: Int, used: MutableList<Boolean>, componentStorage: HashSet<Int>): HashSet<Int> {
+fun Matrix<Int>.dfs(vert: Int, used: MutableList<Boolean>, componentStorage: HashSet<Int>): Unit {
     this.indices.also { used[vert] = true }.forEach { i ->
-        i.takeIf { this[vert][it] == 1 && !used[it] }?.also { componentStorage.add(it) }
-            ?.also { return dfs(i, used, componentStorage) }
-    }.also { return componentStorage }
+        i.takeIf { this[vert][i] == 1 && !used[i] }?.also { componentStorage.add(it) }
+            ?.also { dfs(i, used, componentStorage) }
+    }
 }

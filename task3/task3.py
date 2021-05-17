@@ -41,22 +41,19 @@ while not visited[destination]:
         continue
     visited[current] = True
     for (to, cost) in graph[current].items():
-        if to == 6:
-            print(dijkstra, current)
         if dijkstra[to][0] > dijkstra[current][0] + cost:
             dijkstra[to] = (dijkstra[current][0] + cost, current)
 print(*dijkstra.items(), sep='\n')
 
-print()
-print("OUTPUT FILE:")
-print()
-
-if not visited[destination]:
-    print("N")
-else:
-    print("Y")
-    ans = [dijkstra[destination]]
-    while ans[-1][1] != -1:
-        ans.append(dijkstra[ans[-1][1]])
-    print(*list(map(lambda x: x[1], ans[::-1]))[1:], destination, sep=' ')
-    print(*list(map(lambda x: x[0], ans[::-1])), sep=' ')
+with open("output.txt", "w") as f:
+    if not visited[destination]:
+        f.write("N")
+    else:
+        f.write("Y\n")
+        ans = [dijkstra[destination]]
+        while ans[-1][1] != -1:
+            ans.append(dijkstra[ans[-1][1]])
+        f.write(
+            " ".join(list(map(lambda x: str(x[1]), ans[::-1]))[1:] + [str(destination)]))
+        f.write("\n")
+        f.write(" ".join(list(map(lambda x: str(x[0]), ans[::-1]))))
